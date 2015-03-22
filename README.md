@@ -31,8 +31,7 @@ That's it! Now you can scroll it by dragging.
 
 Keep in mind that now it is not possible to select the content with
 mouse, so apply the `cursor: default;` CSS style to prevent confusing
-the users (or event `cursor: grab;` in case the content is not a
-text).
+the users (or even `cursor: grab;` in case the content is not a text).
 
 In case you add (or remove) the `dragscroll` class after the page was
 loaded, invoke `dragscroll.reset()` to update the listeners.
