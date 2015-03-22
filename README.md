@@ -1,9 +1,9 @@
 dragscroll
 ==========
 
-Dragscroll is a tinye javascript library (978 bytes minified) for
-drag-n-drop scrolling style
-([demo](http://asvd.github.io/dragscroll/)).
+Dragscroll is a tiny javascript library (978 bytes minified) which
+enables scrolling via holding the mouse button (drag-n-drop style,
+[online demo](http://asvd.github.io/dragscroll/)).
 
 
 ### Usage
