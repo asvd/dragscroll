@@ -6,7 +6,7 @@ drag-n-drop scrolling style
 ([demo](http://asvd.github.io/dragscroll/)).
 
 
-### Installation
+### Usage
 
 
 Download the
