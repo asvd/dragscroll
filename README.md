@@ -28,7 +28,7 @@ Add the `dragscroll` class to a scrollable element:
 ```
 
 That's it! Now you can scroll it by dragging. You can also add the
-`dragscroll` to the `<body>` element and drag the whole page.
+`dragscroll` class to the `<body>` element and drag the whole page.
 
 Keep in mind that now it is not possible to select the content with
 mouse, so apply the `cursor: default;` CSS style to prevent confusing
