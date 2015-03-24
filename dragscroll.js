@@ -21,6 +21,7 @@ function (exports) {
     var _window = window;
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
+    var mouseout = 'mouseout';
     var mousedown = 'mousedown';
     var addEventListener = 'addEventListener';
     var removeEventListener = 'removeEventListener';
@@ -53,7 +54,7 @@ function (exports) {
         var lastClientX, lastClientY;
         var dragging = false;
 
-        elem.md = function(e) {
+        elem.on = function(e) {
             dragging = true;
             lastClientX = e.clientX;
             lastClientY = e.clientY;
@@ -62,11 +63,11 @@ function (exports) {
             e.stopPropagation();
         };
 
-        elem.mu = function() {
+        elem.off = function() {
             dragging = false;
         };
 
-        elem.mm = function(e) {
+        elem.drag = function(e) {
             var scroller = get_scroller(elem);
 
             if (dragging) {
@@ -78,9 +79,10 @@ function (exports) {
             }
         };
 
-        elem[addEventListener](mousedown, elem.md, false);
-        _window[addEventListener](mouseup, elem.mu, false);
-        _window[addEventListener](mousemove, elem.mm, false);
+        elem[addEventListener](mousedown, elem.on, false);
+        elem[addEventListener](mouseout, elem.off, false);
+        _window[addEventListener](mouseup, elem.off, false);
+        _window[addEventListener](mousemove, elem.drag, false);
         
         return elem;
     };
@@ -92,9 +94,10 @@ function (exports) {
      * @param {Element} elem
      */
     var undrag = function(elem) {
-        elem[removeEventListener](mousedown, elem.md, false);
-        _window[removeEventListener](mouseup, elem.mu, false);
-        _window[removeEventListener](mousemove, elem.mm, false);
+        elem[removeEventListener](mousedown, elem.on, false);
+        elem[removeEventListener](mouseout, elem.off, false);
+        _window[removeEventListener](mouseup, elem.off, false);
+        _window[removeEventListener](mousemove, elem.drag, false);
     };
 
 
