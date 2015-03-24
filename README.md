@@ -1,7 +1,7 @@
 dragscroll
 ==========
 
-Dragscroll is a tiny javascript library (425 bytes minified) which
+Dragscroll is a tiny javascript library (410 bytes minified) which
 enables scrolling via holding the mouse button (drag-n-drop style,
 [online demo](http://asvd.github.io/dragscroll/)).
 
@@ -10,7 +10,7 @@ enables scrolling via holding the mouse button (drag-n-drop style,
 
 
 Download the
-[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.2/dragscroll-0.0.2.tar.gz),
+[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.3/dragscroll-0.0.3.tar.gz),
 unpack it and load the `dragscroll.js` or `dragscroll_micro.js`:
 
 ```html
@@ -35,7 +35,7 @@ the users (or even `cursor: grab;` in case the content is not a text).
 
 ### Micro verison
 
-Located in `dragscroll_micro.js`, its size is 425 bytes, and it just works.
+Located in `dragscroll_micro.js`, its size is 410 bytes, and it just works.
 
 
 ### Full-featured verison

@@ -1,6 +1,6 @@
 /**
  * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.2
+ * @version 0.0.3
  * 
  * @license MIT, see http://github.com/asvd/intence
  * @copyright 2015 asvd <heliosframework@gmail.com> 
