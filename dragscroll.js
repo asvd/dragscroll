@@ -19,9 +19,10 @@
 function (exports) {
     // better compression
     var _window = window;
-    var mousemove='mousemove';
-    var mouseup='mouseup';
-    var mousedown='mousedown';
+    var mousemove = 'mousemove';
+    var mouseup = 'mouseup';
+    var mouseout = 'mouseout';
+    var mousedown = 'mousedown';
     var addEventListener = 'addEventListener';
     var removeEventListener = 'removeEventListener';
 
@@ -42,60 +43,62 @@ function (exports) {
         }
 
         return scroller;
-    }
+    };
 
     /**
      * Initializes the dragscroll events for the element
      * 
-     * @param {Element} el
+     * @param {Element} elem
      */
-    var drag = function(el){
+    var drag = function(elem){
         var lastClientX, lastClientY;
-        var pushed = false;
+        var dragging = false;
 
-        el.md = function(e) {
-            pushed = true;
+        elem.on = function(e) {
+            dragging = true;
             lastClientX = e.clientX;
             lastClientY = e.clientY;
 
             e.preventDefault();
             e.stopPropagation();
-        }
+        };
 
-        el.mu = function() {
-            if (pushed) {
-                pushed = false;
-            }
-        }
+        elem.off = function() {
+            dragging = false;
+        };
 
-        el.mm = function(e) {
-            var scroller = get_scroller(el);
+        elem.drag = function(e) {
+            var scroller = get_scroller(elem);
 
-            if (pushed) {
+            if (dragging) {
                 scroller.scrollLeft -= (e.clientX - lastClientX);
                 scroller.scrollTop -= (e.clientY - lastClientY);
 
                 lastClientX = e.clientX;
                 lastClientY = e.clientY;
             }
-        }
+        };
 
-        el[addEventListener](mousedown, el.md, false);
-        _window[addEventListener](mouseup, el.mu, false);
-        _window[addEventListener](mousemove, el.mm, false);
-    }
+        elem[addEventListener](mousedown, elem.on, false);
+        elem[addEventListener](mouseout, elem.off, false);
+        _window[addEventListener](mouseup, elem.off, false);
+        _window[addEventListener](mousemove, elem.drag, false);
+        
+        return elem;
+    };
 
     
     /**
      * Removes dragscroll events for the element
      * 
-     * @param {Element} el
+     * @param {Element} elem
      */
-    var undrag = function(el) {
-        el[removeEventListener](mousedown, el.md, false);
-        _window[removeEventListener](mouseup, el.mu, false);
-        _window[removeEventListener](mousemove, el.mm, false);
-    }
+    var undrag = function(elem) {
+        elem[removeEventListener](mousedown, elem.on, false);
+        elem[removeEventListener](mouseout, elem.off, false);
+        _window[removeEventListener](mouseup, elem.off, false);
+        _window[removeEventListener](mousemove, elem.drag, false);
+    };
 
 
     // dragged elements
@@ -105,11 +108,11 @@ function (exports) {
      * Runs through all dragged elements, removes dragscroll events
      */
     var destroyDrag = function() {
-        for (var i = 0; i < dragged.length; i++) {
+        for (var i = 0, len = dragged.length; i < len; i++) {
             undrag(dragged[i]);
         }
         dragged = [];
-    }
+    };
     
     
     /**
@@ -118,11 +121,10 @@ function (exports) {
      */
     var createDrag = function() {
         var elems = document.getElementsByClassName('dragscroll');
-        for (var i = 0; i < elems.length; i++) {
-            drag(elems[i]);
-            dragged.push(elems[i]);
+        for (var i = 0, len = elems.length; i < len; i++) {
+            dragged.push(drag(elems[i]));
         }
-    }
+    };
       
     
 
@@ -132,16 +134,15 @@ function (exports) {
     var reset = function() {
         destroyDrag();
         createDrag();
-    }
+    };
     
 
 
-    if (document.readyState == "complete") {
+    if (document.readyState == 'complete') {
         reset();
     } else {
-        _window[addEventListener]("load", reset, false);
+        _window[addEventListener]('load', reset, false);
     }
 
     exports.reset = reset;
 }));
-
