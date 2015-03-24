@@ -40,7 +40,8 @@ Located in `dragscroll_micro.js`, its size is 425 bytes, and it just works.
 
 ### Full-featured verison
 
-Located in `dragscroll.js`, has some additional features:
+Located in `dragscroll.js`, its size is 972 bytes due to some
+additional features:
 
 - that is an UMD module, so you can load it in a preferrable way;
 
