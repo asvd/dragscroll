@@ -24,6 +24,8 @@ function (exports) {
     var mousedown='mousedown';
     var addEventListener = 'addEventListener';
     var removeEventListener = 'removeEventListener';
+    var clientX = 'clientX';
+    var clientY = 'clientY';
 
 
     /**
@@ -55,8 +57,8 @@ function (exports) {
 
         el.md = function(e) {
             pushed = true;
-            lastClientX = e.clientX;
-            lastClientY = e.clientY;
+            lastClientX = e[clientX];
+            lastClientY = e[clientY];
 
             e.preventDefault();
             e.stopPropagation();
@@ -72,11 +74,11 @@ function (exports) {
             var scroller = get_scroller(el);
 
             if (pushed) {
-                scroller.scrollLeft -= (e.clientX - lastClientX);
-                scroller.scrollTop -= (e.clientY - lastClientY);
+                scroller.scrollLeft -= (e[clientX] - lastClientX);
+                scroller.scrollTop -= (e[clientY] - lastClientY);
 
-                lastClientX = e.clientX;
-                lastClientY = e.clientY;
+                lastClientX = e[clientX];
+                lastClientY = e[clientY];
             }
         }
 
