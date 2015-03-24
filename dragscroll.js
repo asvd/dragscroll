@@ -1,6 +1,6 @@
 /**
  * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.3
+ * @version 0.0.4
  * 
  * @license MIT, see http://github.com/asvd/intence
  * @copyright 2015 asvd <heliosframework@gmail.com> 
@@ -15,133 +15,63 @@
     } else {
         factory((root.dragscroll = {}));
     }
-}(this,
-function (exports) {
-    // better compression
+}(this, function (exports) {
     var _window = window;
-    var mousemove='mousemove';
-    var mouseup='mouseup';
-    var mousedown='mousedown';
+    var mousemove = 'mousemove';
+    var mouseup = 'mouseup';
+    var mousedown = 'mousedown';
     var addEventListener = 'addEventListener';
     var removeEventListener = 'removeEventListener';
-    var clientX = 'clientX';
-    var clientY = 'clientY';
 
-
-    /**
-     * Returns the actual scrolling element
-     * 
-     * @param {Element} elem to get scroller for
-     * 
-     * @returns {Element} scroller
-     */
-    var get_scroller = function(elem) {
-        var scroller = elem;
-
-        if (elem.className.indexOf('intence') != -1 &&
-            typeof elem.scroller != 'undefined') {
-            scroller = elem.scroller;
-        }
-
-        return scroller;
-    }
-
-    /**
-     * Initializes the dragscroll events for the element
-     * 
-     * @param {Element} el
-     */
-    var drag = function(el){
-        var lastClientX, lastClientY;
-        var pushed = false;
-
-        el.md = function(e) {
-            pushed = true;
-            lastClientX = e[clientX];
-            lastClientY = e[clientY];
-
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        el.mu = function() {
-            if (pushed) {
-                pushed = false;
-            }
-        }
-
-        el.mm = function(e) {
-            var scroller = get_scroller(el);
-
-            if (pushed) {
-                scroller.scrollLeft -= (e[clientX] - lastClientX);
-                scroller.scrollTop -= (e[clientY] - lastClientY);
-
-                lastClientX = e[clientX];
-                lastClientY = e[clientY];
-            }
-        }
-
-        el[addEventListener](mousedown, el.md, false);
-        _window[addEventListener](mouseup, el.mu, false);
-        _window[addEventListener](mousemove, el.mm, false);
-    }
-
-    
-    /**
-     * Removes dragscroll events for the element
-     * 
-     * @param {Element} el
-     */
-    var undrag = function(el) {
-        el[removeEventListener](mousedown, el.md, false);
-        _window[removeEventListener](mouseup, el.mu, false);
-        _window[removeEventListener](mousemove, el.mm, false);
-    }
-
-
-    // dragged elements
     var dragged = [];
+    var reset = function(i, el) {
+        for (i = 0; i < dragged.length;) {
+            el = dragged[i++];
+            el[removeEventListener](mousedown, el.md, 0);
+            _window[removeEventListener](mouseup, el.mu, 0);
+            _window[removeEventListener](mousemove, el.mm, 0);
+        }
 
-    /**
-     * Runs through all dragged elements, removes dragscroll events
-     */
-    var destroyDrag = function() {
-        for (var i = 0; i < dragged.length; i++) {
-            undrag(dragged[i]);
+        dragged = document.getElementsByClassName('dragscroll');
+        for (i = 0; i < dragged.length;) {
+            (function(el, lastClientX, lastClientY, pushed){
+                el[addEventListener](
+                    mousedown,
+                    el.md = function(e) {
+                        pushed = 1;
+                        lastClientX = e.clientX;
+                        lastClientY = e.clientY;
+
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }, 0
+                );
+                 
+                 _window[addEventListener](
+                     mouseup, el.mu = function() {pushed = 0;}, 0
+                 );
+                 
+                _window[addEventListener](
+                    mousemove,
+                    el.mm = function(e, scroller) {
+                        scroller = el.scroller||el;
+                        if (pushed) {
+                             scroller.scrollLeft -=
+                                 (- lastClientX + (lastClientX=e.clientX));
+                             scroller.scrollTop -=
+                                 (- lastClientY + (lastClientY=e.clientY));
+                        }
+                    }, 0
+                );
+             })(dragged[i++]);
         }
-        dragged = [];
     }
-    
-    
-    /**
-     * Runs through all elements having the dragscroll class,
-     * initializes the events
-     */
-    var createDrag = function() {
-        var elems = document.getElementsByClassName('dragscroll');
-        for (var i = 0; i < elems.length; i++) {
-            drag(elems[i]);
-            dragged.push(elems[i]);
-        }
-    }
+
       
-    
-
-    /**
-     * Updates the dragscroll for the elments
-     */
-    var reset = function() {
-        destroyDrag();
-        createDrag();
-    }
-    
-
-
     if (document.readyState == "complete") {
         reset();
     } else {
-        _window[addEventListener]("load", reset, false);
+        _window[addEventListener]("load", reset, 0);
     }
 
     exports.reset = reset;

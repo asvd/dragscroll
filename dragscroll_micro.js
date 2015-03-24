@@ -1,3 +1,12 @@
+/**
+ * @fileoverview dragscroll - scroll area by dragging
+ * @version 0.0.4 micro
+ * 
+ * @license MIT, see http://github.com/asvd/intence
+ * @copyright 2015 asvd <heliosframework@gmail.com> 
+ */
+
+
 window.addEventListener("load", function() {
     var addEventListener = 'addEventListener';
     var elems = document.getElementsByClassName('dragscroll');
@@ -14,8 +23,10 @@ window.addEventListener("load", function() {
             
             window[addEventListener]('mousemove', function(e) {
                 if (pushed) {
-                    elem.scrollLeft -= (- lastClientX + (lastClientX=e.clientX));
-                    elem.scrollTop -= (- lastClientY + (lastClientY=e.clientY));
+                    elem.scrollLeft -=
+                        (- lastClientX + (lastClientX=e.clientX));
+                    elem.scrollTop -=
+                        (- lastClientY + (lastClientY=e.clientY));
                 }
             }, 0);
              

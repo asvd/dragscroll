@@ -10,7 +10,7 @@ enables scrolling via holding the mouse button (drag-n-drop style,
 
 
 Download the
-[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.3/dragscroll-0.0.3.tar.gz),
+[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.4/dragscroll-0.0.4.tar.gz),
 unpack it and load the `dragscroll.js` or `dragscroll_micro.js`:
 
 ```html
@@ -35,17 +35,21 @@ the users (or even `cursor: grab;` in case the content is not a text).
 
 ### Micro verison
 
-Located in `dragscroll_micro.js`, its size is 410 bytes, and it just works.
+Located in `dragscroll_micro.js`, its size is 410 bytes, and it just
+works.
 
 
 ### Full-featured verison
 
-Located in `dragscroll.js`, its size is 972 bytes due to some
+Located in `dragscroll.js`, its size is 741 bytes due to some
 additional features:
 
 - that is an UMD module, so you can load it in a preferrable way;
 
-- it can be loaded after the page load, the library will find the elements with the `dragscroll` class and setup the events for them (micro version does this on page load and should be included in the `<head>`);
+- it can be loaded after the page load, the library will find the
+  elements with the `dragscroll` class and setup the events for them
+  (micro version does this on page load and should be included in the
+  `<head>`);
 
 - add or remove the `dragscroll` class dynamically (if you do it,
 invoke `dragscroll.reset()` to update the listeners).
