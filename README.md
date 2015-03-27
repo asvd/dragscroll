@@ -2,8 +2,9 @@ dragscroll
 ==========
 
 Dragscroll is a tiny javascript library (410 bytes minified) which
-enables scrolling via holding the mouse button (drag-n-drop style,
-[online demo](http://asvd.github.io/dragscroll/)).
+enables scrolling via holding the mouse button ("drag and drop" or
+"click and hold" style, [online
+demo](http://asvd.github.io/dragscroll/)).
 
 
 ### Usage
@@ -43,6 +44,8 @@ works.
 
 Located in `dragscroll.js`, its size is 741 bytes due to some
 additional features:
+
+- it works with [intence](http://asvd.github.io/intence/);
 
 - that is an UMD module, so you can load it in a preferrable way;
 
