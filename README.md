@@ -59,3 +59,6 @@ invoke `dragscroll.reset()` to update the listeners).
 
 
 Have fun!
+
+
+follow me on twitter: https://twitter.com/asvd0

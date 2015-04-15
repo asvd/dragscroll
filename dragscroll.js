@@ -20,8 +20,9 @@
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
     var mousedown = 'mousedown';
-    var addEventListener = 'addEventListener';
-    var removeEventListener = 'removeEventListener';
+    var EventListener = 'EventListener';
+    var addEventListener = 'add'+EventListener;
+    var removeEventListener = 'remove'+EventListener;
 
     var dragged = [];
     var reset = function(i, el) {
