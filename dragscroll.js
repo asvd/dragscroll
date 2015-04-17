@@ -1,6 +1,6 @@
 /**
  * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.4
+ * @version 0.0.5
  * 
  * @license MIT, see http://github.com/asvd/intence
  * @copyright 2015 asvd <heliosframework@gmail.com> 
@@ -17,6 +17,7 @@
     }
 }(this, function (exports) {
     var _window = window;
+    var _document = document;
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
     var mousedown = 'mousedown';
@@ -33,7 +34,7 @@
             _window[removeEventListener](mousemove, el.mm, 0);
         }
 
-        dragged = document.getElementsByClassName('dragscroll');
+        dragged = _document.getElementsByClassName('dragscroll');
         for (i = 0; i < dragged.length;) {
             (function(el, lastClientX, lastClientY, pushed){
                 el[addEventListener](
@@ -69,10 +70,10 @@
     }
 
       
-    if (document.readyState == "complete") {
+    if (_document.readyState == 'complete') {
         reset();
     } else {
-        _window[addEventListener]("load", reset, 0);
+        _window[addEventListener]('load', reset, 0);
     }
 
     exports.reset = reset;
