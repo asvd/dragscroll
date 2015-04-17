@@ -4,7 +4,8 @@ dragscroll
 Dragscroll is a micro JavaScript library (734 bytes minified) which
 enables scrolling via holding the mouse button ("drag and drop" or
 "click and hold" style, [online
-demo](http://asvd.github.io/dragscroll/)).
+demo](http://asvd.github.io/dragscroll/)). It has no dependencies and
+is written in vanilla JavaScript (which means it works anywhere).
 
 
 ### Usage
