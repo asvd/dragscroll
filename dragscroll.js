@@ -21,6 +21,10 @@
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
     var mousedown = 'mousedown';
+    var touchstart = 'touchstart';
+    var touchend = 'touchend';
+    var touchmove = 'touchmove';
+    var touchcancel = 'touchcancel';
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
@@ -30,8 +34,12 @@
         for (i = 0; i < dragged.length;) {
             el = dragged[i++];
             el[removeEventListener](mousedown, el.md, 0);
+            el[removeEventListener](touchstart, el.md, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
+            _window[removeEventListener](touchmove, el.mm, 0);
+            _window[removeEventListener](touchend, el.mm, 0);
+            _window[removeEventListener](touchcancel, el.mm, 0);
         }
 
         dragged = _document.getElementsByClassName('dragscroll');
@@ -48,9 +56,26 @@
                         e.stopPropagation();
                     }, 0
                 );
+                el[addEventListener](
+                    touchstart,
+                    el.tmd = function(e) {
+                        pushed = 1;
+                        lastClientX = e.touches[0].clientX;
+                        lastClientY = e.touches[0].clientY;
+
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }, 0
+                );
                  
                  _window[addEventListener](
                      mouseup, el.mu = function() {pushed = 0;}, 0
+                 );
+                 _window[addEventListener](
+                     touchend, el.tmu = function() {pushed = 0;}, 0
+                 );
+                 _window[addEventListener](
+                     touchcancel, el.tmc = function() {pushed = 0;}, 0
                  );
                  
                 _window[addEventListener](
@@ -62,6 +87,18 @@
                                  (- lastClientX + (lastClientX=e.clientX));
                              scroller.scrollTop -=
                                  (- lastClientY + (lastClientY=e.clientY));
+                        }
+                    }, 0
+                );
+                _window[addEventListener](
+                    touchmove,
+                    el.tmm = function(e, scroller) {
+                        scroller = el.scroller||el;
+                        if (pushed) {
+                             scroller.scrollLeft -=
+                                 (- lastClientX + (lastClientX=e.touches[0].clientX));
+                             scroller.scrollTop -=
+                                 (- lastClientY + (lastClientY=e.touches[0].clientY));
                         }
                     }, 0
                 );
