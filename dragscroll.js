@@ -1,9 +1,9 @@
 /**
  * @fileoverview dragscroll - scroll area by dragging
  * @version 0.0.5
- * 
+ *
  * @license MIT, see http://github.com/asvd/intence
- * @copyright 2015 asvd <heliosframework@gmail.com> 
+ * @copyright 2015 asvd <heliosframework@gmail.com>
  */
 
 
@@ -67,7 +67,7 @@
                         e.stopPropagation();
                     }, 0
                 );
-                 
+
                  _window[addEventListener](
                      mouseup, el.mu = function() {pushed = 0;}, 0
                  );
@@ -77,16 +77,18 @@
                  _window[addEventListener](
                      touchcancel, el.tmc = function() {pushed = 0;}, 0
                  );
-                 
+
                 _window[addEventListener](
                     mousemove,
                     el.mm = function(e, scroller) {
-                        scroller = el.scroller||el;
                         if (pushed) {
-                             scroller.scrollLeft -=
-                                 (- lastClientX + (lastClientX=e.clientX));
-                             scroller.scrollTop -=
-                                 (- lastClientY + (lastClientY=e.clientY));
+                          var top = (- lastClientY + (lastClientY=e.clientY));
+                          var left = (- lastClientX + (lastClientX=e.clientX));
+                          for(var i = 0; i < dragged.length; i++) {
+                            scroller = dragged[i].scroller||dragged[i];
+                            scroller.scrollLeft -= left;
+                            scroller.scrollTop -= top;
+                          }
                         }
                     }, 0
                 );
@@ -95,10 +97,13 @@
                     el.tmm = function(e, scroller) {
                         scroller = el.scroller||el;
                         if (pushed) {
-                             scroller.scrollLeft -=
-                                 (- lastClientX + (lastClientX=e.touches[0].clientX));
-                             scroller.scrollTop -=
-                                 (- lastClientY + (lastClientY=e.touches[0].clientY));
+                          var top = (- lastClientY + (lastClientY=e.clientY));
+                          var left = (- lastClientX + (lastClientX=e.clientX));
+                          for(var i = 0; i < dragged.length; i++) {
+                            scroller = dragged[i].scroller||dragged[i];
+                            scroller.scrollLeft -= left;
+                            scroller.scrollTop -= top;
+                          }
                         }
                     }, 0
                 );
@@ -106,7 +111,7 @@
         }
     }
 
-      
+
     if (_document.readyState == 'complete') {
         reset();
     } else {
