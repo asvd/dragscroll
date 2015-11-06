@@ -30,16 +30,30 @@
     var removeEventListener = 'remove'+EventListener;
 
     var dragged = [];
+
+    var off = function(i, el) {
+        for (i = 0; i < dragged.length;) {
+            el = dragged[i++];
+            el[removeEventListener](mousedown, el.md, 0);
+            el[removeEventListener](touchstart, el.tmd, 0);
+            _window[removeEventListener](mouseup, el.mu, 0);
+            _window[removeEventListener](mousemove, el.mm, 0);
+            _window[removeEventListener](touchmove, el.tmm, 0);
+            _window[removeEventListener](touchend, el.tmu, 0);
+            _window[removeEventListener](touchcancel, el.tmc, 0);
+        }
+      }
+
     var reset = function(i, el) {
         for (i = 0; i < dragged.length;) {
             el = dragged[i++];
             el[removeEventListener](mousedown, el.md, 0);
-            el[removeEventListener](touchstart, el.md, 0);
+            el[removeEventListener](touchstart, el.tmd, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
-            _window[removeEventListener](touchmove, el.mm, 0);
-            _window[removeEventListener](touchend, el.mm, 0);
-            _window[removeEventListener](touchcancel, el.mm, 0);
+            _window[removeEventListener](touchmove, el.tmm, 0);
+            _window[removeEventListener](touchend, el.tmu, 0);
+            _window[removeEventListener](touchcancel, el.tmc, 0);
         }
 
         dragged = _document.getElementsByClassName('dragscroll');
@@ -84,6 +98,7 @@
                         if (pushed) {
                           var top = (- lastClientY + (lastClientY=e.clientY));
                           var left = (- lastClientX + (lastClientX=e.clientX));
+
                           for(var i = 0; i < dragged.length; i++) {
                             scroller = dragged[i].scroller||dragged[i];
                             scroller.scrollLeft -= left;
@@ -95,10 +110,10 @@
                 _window[addEventListener](
                     touchmove,
                     el.tmm = function(e, scroller) {
-                        scroller = el.scroller||el;
-                        if (pushed) {
-                          var top = (- lastClientY + (lastClientY=e.clientY));
-                          var left = (- lastClientX + (lastClientX=e.clientX));
+                      if (pushed) {
+                          var top = (- lastClientY + (lastClientY=e.touches[0].clientY));
+                          var left = (- lastClientX + (lastClientX=e.touches[0].clientX));
+
                           for(var i = 0; i < dragged.length; i++) {
                             scroller = dragged[i].scroller||dragged[i];
                             scroller.scrollLeft -= left;
@@ -119,5 +134,6 @@
     }
 
     exports.reset = reset;
+    exports.off = off;
 }));
 
