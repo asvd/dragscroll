@@ -40,6 +40,10 @@
                 el[addEventListener](
                     mousedown,
                     el.md = function(e) {
+                        if ((e.target.offsetWidth > e.target.clientWidth && e.offsetX > e.target.clientWidth) ||
+                            (e.target.offsetHeight > e.target.clientHeight && e.offsetY > e.target.clientHeight)) {
+                            return;
+                        }
                         pushed = 1;
                         lastClientX = e.clientX;
                         lastClientY = e.clientY;
