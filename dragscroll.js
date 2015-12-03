@@ -77,8 +77,6 @@
                         lastClientX = e.touches[0].clientX;
                         lastClientY = e.touches[0].clientY;
 
-                        e.preventDefault();
-                        e.stopPropagation();
                     }, 0
                 );
 
@@ -95,30 +93,25 @@
                 _window[addEventListener](
                     mousemove,
                     el.mm = function(e, scroller) {
+						scroller = el.scroller||el;
                         if (pushed) {
-                          var top = (- lastClientY + (lastClientY=e.clientY));
-                          var left = (- lastClientX + (lastClientX=e.clientX));
-
-                          for(var i = 0; i < dragged.length; i++) {
-                            scroller = dragged[i].scroller||dragged[i];
-                            scroller.scrollLeft -= left;
-                            scroller.scrollTop -= top;
-                          }
+                             scroller.scrollLeft -=
+                                 (- lastClientX + (lastClientX=e.clientX));
+                             scroller.scrollTop -=
+                                 (- lastClientY + (lastClientY=e.clientY));
                         }
                     }, 0
                 );
+
                 _window[addEventListener](
                     touchmove,
                     el.tmm = function(e, scroller) {
-                      if (pushed) {
-                          var top = (- lastClientY + (lastClientY=e.touches[0].clientY));
-                          var left = (- lastClientX + (lastClientX=e.touches[0].clientX));
-
-                          for(var i = 0; i < dragged.length; i++) {
-                            scroller = dragged[i].scroller||dragged[i];
-                            scroller.scrollLeft -= left;
-                            scroller.scrollTop -= top;
-                          }
+						scroller = el.scroller||el;
+                        if (pushed) {
+                             scroller.scrollLeft -=
+                                 (- lastClientX + (lastClientX=e.touches[0].clientX));
+                             scroller.scrollTop -=
+                                 (- lastClientY + (lastClientY=e.touches[0].clientY));
                         }
                     }, 0
                 );
