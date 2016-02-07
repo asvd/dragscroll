@@ -24,11 +24,13 @@
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
+    var container = 'container';
 
     var dragged = [];
     var reset = function(i, el) {
         for (i = 0; i < dragged.length;) {
             el = dragged[i++];
+            el = el[container] || el;
             el[removeEventListener](mousedown, el.md, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
@@ -36,29 +38,34 @@
 
         dragged = _document.getElementsByClassName('dragscroll');
         for (i = 0; i < dragged.length;) {
-            (function(el, lastClientX, lastClientY, pushed){
-                el[addEventListener](
+            (function(el, lastClientX, lastClientY, pushed, scroller, cont){
+                (cont = el[container] || el)[addEventListener](
                     mousedown,
-                    el.md = function(e) {
-                        pushed = 1;
-                        lastClientX = e.clientX;
-                        lastClientY = e.clientY;
+                    cont.md = function(e) {
+                        if (!el.hasAttribute('nochilddrag') ||
+                            _document.elementFromPoint(
+                                e.pageX, e.pageY
+                            ) == cont
+                        ) {
+                            pushed = 1;
+                            lastClientX = e.clientX;
+                            lastClientY = e.clientY;
 
-                        e.preventDefault();
-                        e.stopPropagation();
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
                     }, 0
                 );
-                 
-                 _window[addEventListener](
-                     mouseup, el.mu = function() {pushed = 0;}, 0
-                 );
-                 
+
+                _window[addEventListener](
+                    mouseup, cont.mu = function() {pushed = 0;}, 0
+                );
+
                 _window[addEventListener](
                     mousemove,
-                    el.mm = function(e, scroller) {
-                        scroller = el.scroller||el;
+                    cont.mm = function(e) {
                         if (pushed) {
-                             scroller.scrollLeft -=
+                             (scroller = el.scroller||el).scrollLeft -=
                                  (- lastClientX + (lastClientX=e.clientX));
                              scroller.scrollTop -=
                                  (- lastClientY + (lastClientY=e.clientY));
