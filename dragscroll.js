@@ -52,7 +52,6 @@
                             lastClientY = e.clientY;
 
                             e.preventDefault();
-                            e.stopPropagation();
                         }
                     }, 0
                 );
