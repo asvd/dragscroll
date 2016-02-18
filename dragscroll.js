@@ -24,22 +24,22 @@
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
-    var container = 'container';
 
     var dragged = [];
     var reset = function(i, el) {
         for (i = 0; i < dragged.length;) {
             el = dragged[i++];
-            el = el[container] || el;
+            el = el.container || el;
             el[removeEventListener](mousedown, el.md, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
         }
 
+        // cloning into array since HTMLCollection is updated dynamically
         dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
         for (i = 0; i < dragged.length;) {
             (function(el, lastClientX, lastClientY, pushed, scroller, cont){
-                (cont = el[container] || el)[addEventListener](
+                (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
                         if (!el.hasAttribute('nochilddrag') ||
