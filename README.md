@@ -12,7 +12,7 @@ is written in vanilla JavaScript (which means it works anywhere).
 
 
 Download the and unpack
-[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.6/dragscroll-0.0.6.tar.gz),
+[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.7/dragscroll-0.0.7.tar.gz),
 or install it using [Bower](http://bower.io/):
 
 ```sh
