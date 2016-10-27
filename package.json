@@ -1,0 +1,35 @@
+{
+  "author": "Dmitry Prokashev <heliosframework@gmail.com>",
+  "name": "dragscroll",
+  "description": "Tiny library for drag-n-drop scrolling style",
+  "version": "0.0.6",
+  "keywords": [
+    "dragscroll",
+    "scroll",
+    "scrolling",
+    "mouse",
+    "hold",
+    "drag-n-drop",
+    "drag-and-drop",
+    "click-n-hold",
+    "click-and-hold",
+    "drag",
+    "viewport",
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asvd/dragscroll.git"
+  },
+  "browser":
+    {
+      "fs": false,
+      "child_process": false
+    },
+  "main": "dragscroll.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

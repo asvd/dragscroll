@@ -12,13 +12,18 @@
     "globals"
   ],
   "keywords": [
+    "dragscroll",
     "scroll",
     "scrolling",
+    "mouse",
     "hold",
     "click-and-hold",
     "drag-and-drop",
     "drag-n-drop",
-    "click-n-hold"
+    "click-n-hold",
+    "click-and-hold",
+    "drag",
+    "viewport",
   ],
   "license": "MIT",
   "ignore": [
