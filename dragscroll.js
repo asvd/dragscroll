@@ -24,6 +24,7 @@
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
+    var newScrollX, newScrollY
 
     var dragged = [];
     var reset = function(i, el) {
@@ -64,10 +65,12 @@
                     mousemove,
                     cont.mm = function(e) {
                         if (pushed) {
-                             (scroller = el.scroller||el).scrollLeft -=
-                                 (- lastClientX + (lastClientX=e.clientX));
-                             scroller.scrollTop -=
-                                 (- lastClientY + (lastClientY=e.clientY));
+                            (scroller = el.scroller||el).scrollLeft -= newScrollX = (- lastClientX + (lastClientX=e.clientX));
+                            scroller.scrollTop -= newScrollY = (- lastClientY + (lastClientY=e.clientY));
+                            if (el == _document.body) {
+                                (scroller = _document.documentElement).scrollLeft -= newScrollX;
+                                scroller.scrollTop -= newScrollY;
+                            }
                         }
                     }, 0
                 );
