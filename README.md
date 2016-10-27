@@ -19,6 +19,12 @@ or install it using [Bower](http://bower.io/):
 $ bower install dragscroll
 ```
 
+or npm:
+
+```sh
+$ npm install dragscroll
+```
+
 Load the `dragscroll.js` in a preferable way (that is an UMD module):
 
 ```html

@@ -23,7 +23,7 @@
     "click-n-hold",
     "click-and-hold",
     "drag",
-    "viewport",
+    "viewport"
   ],
   "license": "MIT",
   "ignore": [
