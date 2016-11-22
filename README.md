@@ -34,7 +34,7 @@ Load the `dragscroll.js` in a preferable way (that is an UMD module):
 Add the `dragscroll` class to a scrollable element:
 
 ```html
-<div class=dragscroll>
+<div class="dragscroll">
     Big text goes here...
 </div>
 ```
@@ -44,7 +44,7 @@ That's it! Now you can scroll it by dragging. You can also add the
 
 Keep in mind that now it is not possible to select the content with
 mouse, so apply the `cursor: default;` CSS style to prevent confusing
-the users (or even `cursor: grab;` in case the content is not a text).
+the users (or even `cursor: move;` in case the content is not a text).
 
 If you add or remove the `dragscroll` class dynamically, invoke
 `dragscroll.reset()` to update the listeners.
