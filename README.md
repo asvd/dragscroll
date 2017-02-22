@@ -14,7 +14,7 @@ I did not use jQuery. It is just pure Javascript
 
 
 Download the and unpack
-[distribution](https://github.com/asvd/dragscroll/releases/download/v0.0.8/dragscroll-0.0.8.tar.gz),
+[distribution](https://github.com/cymakr/dragscroll/archive/v0.1.tar.gz),
 or install it using [Bower](http://bower.io/):
 
 ```sh
