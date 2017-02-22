@@ -63,5 +63,9 @@ opportunity to select the text (see
 [example](http://asvd.github.io/jailed/demos/web/process/)).
 
 -
+TO DO
+==========
+* Edit image movement range
+-
 
 Follow me on instagram: https://www.instagram.com/cxymxa
