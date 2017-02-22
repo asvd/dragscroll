@@ -94,7 +94,7 @@ var zoom = 1;
 function zoomIn() {
     zoom = zoom + 0.25;
     var sheet = document.createElement('style');
-    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: 0 0;-o-transform: scale(" + zoom + ");-o-transform-origin: 0 0;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: 0 0;}";
+    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: center center;-o-transform: scale(" + zoom + ");-o-transform-origin: center center;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: center center;}";
     document.body.appendChild(sheet);
 }
 function zoomOut() {
@@ -103,6 +103,6 @@ function zoomOut() {
     }
     zoom = zoom - 0.25;
     var sheet = document.createElement('style');
-    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: 0 0;-o-transform: scale(" + zoom + ");-o-transform-origin: 0 0;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: 0 0;}";
+    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: center center;-o-transform: scale(" + zoom + ");-o-transform-origin: center center;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: center center;}";
     document.body.appendChild(sheet);
 }
