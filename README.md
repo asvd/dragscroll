@@ -65,7 +65,7 @@ opportunity to select the text (see
 -
 TO DO
 ==========
-Edit image movement range
--
+
+* Edit image movement range
 
 Follow me on instagram: https://www.instagram.com/cxymxa
