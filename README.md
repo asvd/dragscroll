@@ -7,8 +7,8 @@ enables scrolling via holding the mouse button ("drag and drop" or
 demo](http://asvd.github.io/dragscroll/)). It has no dependencies and
 is written in vanilla JavaScript (which means it works anywhere).  
 
-And I added a zoom function. (It is getting better)
-
+And I added a zoom function. (It is getting better)  
+I did not use jQuery. It is just pure Javascript
 
 ### Usage
 
@@ -49,6 +49,8 @@ That's it! Now you can scroll it by dragging. You can also add the
 Keep in mind that now it is not possible to select the content with
 mouse, so apply the `cursor: default;` CSS style to prevent confusing
 the users (or even `cursor: grab;` in case the content is not a text).
+
+You can use `zoom-in()`,`zoom-out()` to zoom in and zoom out a `dragsimg`.
 
 If you add or remove the `dragscroll` class dynamically, invoke
 `dragscroll.reset()` to update the listeners.
