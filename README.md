@@ -39,7 +39,7 @@ Add the `dragscroll` class to a scrollable element:
 <button id="zoom-in" onclick="zoomIn();">확대</button>
 <button id="zoom-out" onclick="zoomOut();">축소</button>
 <div id="map" class="dragscroll">
-    <img id="dragsimg" src="./../common/img/거제통영지도.jpg" />
+    <img id="dragsimg" src="test.jpg" />
 </div>
 ```
 
