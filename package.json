@@ -1,8 +1,8 @@
 {
-  "author": "Dmitry Prokashev <heliosframework@gmail.com>",
-  "name": "dragscroll",
+  "author": "cymakr <cymakr@gmail.com>",
+  "name": "dragscroll-zoom",
   "description": "Tiny library for drag-n-drop scrolling style",
-  "version": "0.0.8",
+  "version": "0.0.1",
   "keywords": [
     "dragscroll",
     "scroll",
@@ -14,11 +14,12 @@
     "click-n-hold",
     "click-and-hold",
     "drag",
-    "viewport"
+    "viewport",
+    "zoom"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/asvd/dragscroll.git"
+    "url": "git://github.com/cymakr/dragscroll.git"
   },
   "browser":
     {

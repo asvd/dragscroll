@@ -1,10 +1,11 @@
 /**
  * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.8
- * 
+ * @version 0.0.9
+ *
  * @license MIT, see http://github.com/asvd/dragscroll
- * @copyright 2015 asvd <heliosframework@gmail.com> 
+ * @copyright 2015 asvd <heliosframework@gmail.com>
  */
+var zoom = 1;
 
 
 (function (root, factory) {
@@ -80,7 +81,7 @@
         }
     }
 
-      
+
     if (_document.readyState == 'complete') {
         reset();
     } else {
@@ -90,3 +91,18 @@
     exports.reset = reset;
 }));
 
+function zoomIn() {
+    zoom = zoom + 0.25;
+    var sheet = document.createElement('style');
+    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: 0 0;-o-transform: scale(" + zoom + ");-o-transform-origin: 0 0;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: 0 0;}";
+    document.body.appendChild(sheet);
+}
+function zoomOut() {
+    if(zoom<=0.5){
+        return false;
+    }
+    zoom = zoom - 0.25;
+    var sheet = document.createElement('style');
+    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: 0 0;-o-transform: scale(" + zoom + ");-o-transform-origin: 0 0;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: 0 0;}";
+    document.body.appendChild(sheet);
+}

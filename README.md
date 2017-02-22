@@ -1,11 +1,13 @@
-dragscroll
+dragscroll-zoom
 ==========
 
-Dragscroll is a micro JavaScript library (910 bytes minified) which
+Dragscroll-Zoom is a micro JavaScript library (910 bytes minified) which
 enables scrolling via holding the mouse button ("drag and drop" or
 "click and hold" style, [online
 demo](http://asvd.github.io/dragscroll/)). It has no dependencies and
-is written in vanilla JavaScript (which means it works anywhere).
+is written in vanilla JavaScript (which means it works anywhere).  
+
+And I added a zoom function. (It is getting better)
 
 
 ### Usage
@@ -16,13 +18,13 @@ Download the and unpack
 or install it using [Bower](http://bower.io/):
 
 ```sh
-$ bower install dragscroll
+$ bower install dragscroll-zoom
 ```
 
 or npm:
 
 ```sh
-$ npm install dragscroll
+$ npm install dragscroll-zoom
 ```
 
 Load the `dragscroll.js` in a preferable way (that is an UMD module):
@@ -34,8 +36,10 @@ Load the `dragscroll.js` in a preferable way (that is an UMD module):
 Add the `dragscroll` class to a scrollable element:
 
 ```html
-<div class=dragscroll>
-    Big text goes here...
+<button id="zoom-in" onclick="zoomIn();">확대</button>
+<button id="zoom-out" onclick="zoomOut();">축소</button>
+<div id="map" class="dragscroll">
+    <img id="dragsimg" src="./../common/img/거제통영지도.jpg" />
 </div>
 ```
 
@@ -58,4 +62,4 @@ opportunity to select the text (see
 
 -
 
-Follow me on twitter: https://twitter.com/asvd0
+Follow me on instagram: https://www.instagram.com/cxymxa

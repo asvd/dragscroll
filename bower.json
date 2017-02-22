@@ -1,9 +1,9 @@
 {
-  "name": "dragscroll",
-  "version": "0.0.8",
-  "homepage": "https://github.com/asvd/dragscroll",
+  "name": "dragscroll-zoom",
+  "version": "0.0.1",
+  "homepage": "https://github.com/cymakr/dragscroll",
   "authors": [
-    "Dmitry Prokashev <heliosframework@gmail.com>"
+    "cymakr <cymakr@gmail.com>"
   ],
   "description": "Tiny library for drag-n-drop scrolling style",
   "main": "dragscroll.js",
@@ -23,7 +23,8 @@
     "click-n-hold",
     "click-and-hold",
     "drag",
-    "viewport"
+    "viewport",
+    "zoom"
   ],
   "license": "MIT",
   "ignore": [
