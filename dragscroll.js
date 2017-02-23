@@ -1,11 +1,16 @@
 /**
- * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.8
- * 
- * @license MIT, see http://github.com/asvd/dragscroll
- * @copyright 2015 asvd <heliosframework@gmail.com> 
+ * @fileoverview dragscroll-zoom - scroll area by dragging and zoom in~out
+ * @version 1.0.0
+ *
+ * @license MIT, see https://github.com/cymakr/dragscroll-zoom
+ * @copyright 2017 cymakr <cymakr@gmail.com>
+ *
+ * This project began as a fork of dragscroll https://github.com/asvd/dragscroll
  */
-
+var zoom = 100;
+var sheet = document.createElement('style');
+sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
+document.body.appendChild(sheet);
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -78,9 +83,9 @@
                 );
              })(dragged[i++]);
         }
-    }
+    };
 
-      
+
     if (_document.readyState == 'complete') {
         reset();
     } else {
@@ -90,3 +95,16 @@
     exports.reset = reset;
 }));
 
+function zoomIn(n) {
+    zoom = zoom + n;
+    sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
+    document.body.appendChild(sheet);
+}
+function zoomOut(n) {
+    if(zoom<=100){
+        return false;
+    }
+    zoom = zoom - n;
+    sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
+    document.body.appendChild(sheet);
+}
