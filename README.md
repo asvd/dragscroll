@@ -4,7 +4,7 @@ dragscroll-zoom
 Dragscroll-Zoom is a micro JavaScript library (910 bytes minified) which
 enables scrolling via holding the mouse button ("drag and drop" or
 "click and hold" style, [online
-demo](http://asvd.github.io/dragscroll/)). It has no dependencies and
+demo](http://cymakr.github.io/dragscroll-zoom.html)). It has no dependencies and
 is written in vanilla JavaScript (which means it works anywhere).  
 
 And I added a zoom function. (It is getting better)  
@@ -34,13 +34,26 @@ Load the `dragscroll.js` in a preferable way (that is an UMD module):
 ```
 
 Add the `dragscroll` class to a scrollable element:
-
+```css
+.dragscroll{
+  overflow: scroll;
+  cursor : grab;
+  cursor : -o-grab;
+  cursor : -moz-grab;
+  cursor : -webkit-grab;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+```
 ```html
+<body>
+<script type="text/javascript" src="./dragscroll.js"></script>
 <button id="zoom-in" onclick="zoomIn();">확대</button>
 <button id="zoom-out" onclick="zoomOut();">축소</button>
-<div id="map" class="dragscroll">
-    <img id="dragsimg" src="test.jpg" />
+<div class="dragscroll">
+  <img id="dragsimg" src="./test.png" />
 </div>
+</body>
 ```
 
 That's it! Now you can scroll it by dragging. You can also add the
@@ -65,6 +78,6 @@ opportunity to select the text (see
 TO DO
 ==========
 
-* Edit image movement range
+* Edit image movement range `success`
 
 Follow me on instagram: https://www.instagram.com/cxymxa
