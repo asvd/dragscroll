@@ -1,6 +1,6 @@
 /**
  * @fileoverview dragscroll-zoom - scroll area by dragging and zoom in~out
- * @version 0.1.6
+ * @version 1.0.0
  *
  * @license MIT, see https://github.com/cymakr/dragscroll-zoom
  * @copyright 2017 cymakr <cymakr@gmail.com>
@@ -95,16 +95,16 @@ document.body.appendChild(sheet);
     exports.reset = reset;
 }));
 
-function zoomIn() {
-    zoom = zoom + 20;
+function zoomIn(n) {
+    zoom = zoom + n;
     sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
     document.body.appendChild(sheet);
 }
-function zoomOut() {
+function zoomOut(n) {
     if(zoom<=100){
         return false;
     }
-    zoom = zoom - 20;
+    zoom = zoom - n;
     sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
     document.body.appendChild(sheet);
 }
