@@ -1,11 +1,11 @@
 {
   "name": "dragscroll-zoom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/cymakr/dragscroll",
   "authors": [
     "cymakr <cymakr@gmail.com>"
   ],
-  "description": "Tiny library for drag-n-drop scrolling style",
+  "description": "Tiny library for drag-n-drop scrolling style and zoom in~out",
   "main": "dragscroll.js",
   "moduleType": [
     "amd",

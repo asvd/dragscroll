@@ -5,8 +5,10 @@
  * @license MIT, see http://github.com/asvd/dragscroll
  * @copyright 2015 asvd <heliosframework@gmail.com>
  */
-var zoom = 1;
-
+var zoom = 100;
+var sheet = document.createElement('style');
+sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
+document.body.appendChild(sheet);
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -79,7 +81,7 @@ var zoom = 1;
                 );
              })(dragged[i++]);
         }
-    }
+    };
 
 
     if (_document.readyState == 'complete') {
@@ -92,17 +94,15 @@ var zoom = 1;
 }));
 
 function zoomIn() {
-    zoom = zoom + 0.25;
-    var sheet = document.createElement('style');
-    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: center center;-o-transform: scale(" + zoom + ");-o-transform-origin: center center;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: center center;}";
+    zoom = zoom + 20;
+    sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
     document.body.appendChild(sheet);
 }
 function zoomOut() {
-    if(zoom<=0.5){
+    if(zoom<=100){
         return false;
     }
-    zoom = zoom - 0.25;
-    var sheet = document.createElement('style');
-    sheet.innerHTML = "#dragsimg {-ms-zoom:" + zoom + ";-moz-transform: scale(" + zoom + ");-moz-transform-origin: center center;-o-transform: scale(" + zoom + ");-o-transform-origin: center center;-webkit-transform: scale(" + zoom + ");-webkit-transform-origin: center center;}";
+    zoom = zoom - 20;
+    sheet.innerHTML = "#dragsimg {width:" + zoom + "%;}";
     document.body.appendChild(sheet);
 }
