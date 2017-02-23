@@ -4,6 +4,8 @@
  *
  * @license MIT, see https://github.com/cymakr/dragscroll-zoom
  * @copyright 2017 cymakr <cymakr@gmail.com>
+ *
+ * This project began as a fork of dragscroll https://github.com/asvd/dragscroll
  */
 var zoom = 100;
 var sheet = document.createElement('style');
