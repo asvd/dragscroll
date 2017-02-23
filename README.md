@@ -62,7 +62,6 @@ scrolling the area by dragging its empty space, but keep the
 opportunity to select the text (see
 [example](http://asvd.github.io/jailed/demos/web/process/)).
 
--
 TO DO
 ==========
 

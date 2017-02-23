@@ -2,7 +2,7 @@
   "author": "cymakr <cymakr@gmail.com>",
   "name": "dragscroll-zoom",
   "description": "Tiny library for drag-n-drop scrolling style and zoom in~out",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "keywords": [
     "dragscroll",
     "scroll",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/cymakr/dragscroll.git"
+    "url": "git://github.com/cymakr/dragscroll-zoom.git"
   },
   "browser":
     {
