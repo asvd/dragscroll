@@ -18,7 +18,7 @@ Download the and unpack
 or install it using [Bower](http://bower.io/):
 
 ```sh
-$ bower install dragscroll-zoom2
+$ bower install dragscroll-zoom
 ```
 
 or npm:
