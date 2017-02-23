@@ -1,9 +1,9 @@
 /**
- * @fileoverview dragscroll - scroll area by dragging
- * @version 0.0.9
+ * @fileoverview dragscroll-zoom - scroll area by dragging and zoom in~out
+ * @version 0.1.6
  *
- * @license MIT, see http://github.com/asvd/dragscroll
- * @copyright 2015 asvd <heliosframework@gmail.com>
+ * @license MIT, see https://github.com/cymakr/dragscroll-zoom
+ * @copyright 2017 cymakr <cymakr@gmail.com>
  */
 var zoom = 100;
 var sheet = document.createElement('style');

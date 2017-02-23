@@ -2,7 +2,7 @@
   "author": "cymakr <cymakr@gmail.com>",
   "name": "dragscroll-zoom",
   "description": "Tiny library for drag-n-drop scrolling style and zoom in~out",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "keywords": [
     "dragscroll",
     "scroll",
