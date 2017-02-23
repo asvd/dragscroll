@@ -13,9 +13,7 @@ I did not use jQuery. It is just pure Javascript
 ### Usage
 
 
-Download the and unpack
-[distribution](https://github.com/cymakr/dragscroll/archive/v0.1.tar.gz),
-or install it using [Bower](http://bower.io/):
+Install it using [Bower](http://bower.io/):
 
 ```sh
 $ bower install dragscroll-zoom
