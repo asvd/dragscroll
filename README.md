@@ -7,8 +7,7 @@ enables scrolling via holding the mouse button ("drag and drop" or
 demo](http://cymakr.github.io/dragscroll-zoom.html)). It has no dependencies and
 is written in vanilla JavaScript (which means it works anywhere).  
 
-And I added a zoom function. (It is getting better)  
-I did not use jQuery. It is just pure Javascript
+And I added a zoom function. (It is getting better)
 
 ### Usage
 
