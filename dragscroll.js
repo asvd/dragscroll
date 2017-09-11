@@ -6,6 +6,12 @@
  * @copyright 2015 asvd <heliosframework@gmail.com> 
  */
 
+function fixTouches(e) {
+    if(e.touches) {
+        e.clientX = e.touches[0].clientX;
+        e.clientY = e.touches[0].clientY;
+    }
+}
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -18,9 +24,9 @@
 }(this, function (exports) {
     var _window = window;
     var _document = document;
-    var mousemove = 'mousemove';
-    var mouseup = 'mouseup';
-    var mousedown = 'mousedown';
+    var mousemove = 'mousemove touchmove';
+    var mouseup = 'mouseup touchend';
+    var mousedown = 'mousedown touchstart';
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
@@ -32,50 +38,61 @@
             el = dragged[i++];
             el = el.container || el;
             el[removeEventListener](mousedown, el.md, 0);
-            _window[removeEventListener](mouseup, el.mu, 0);
-            _window[removeEventListener](mousemove, el.mm, 0);
+            mouseup.split(' ').forEach(function(ev) {
+                _window[removeEventListener](ev, el.mu, 0);
+            });
+            mousemove.split(' ').forEach(function(ev) {
+                _window[removeEventListener](ev, el.mm, 0);
+            });
         }
 
         // cloning into array since HTMLCollection is updated dynamically
         dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
         for (i = 0; i < dragged.length;) {
             (function(el, lastClientX, lastClientY, pushed, scroller, cont){
-                (cont = el.container || el)[addEventListener](
-                    mousedown,
-                    cont.md = function(e) {
-                        if (!el.hasAttribute('nochilddrag') ||
-                            _document.elementFromPoint(
-                                e.pageX, e.pageY
-                            ) == cont
-                        ) {
-                            pushed = 1;
-                            lastClientX = e.clientX;
-                            lastClientY = e.clientY;
+                mousedown.split(' ').forEach(function(ev) {
+                    (cont = el.container || el)[addEventListener](
+                        ev,
+                        cont.md = function(e) {
+                            fixTouches(e);
+                            if (!el.hasAttribute('nochilddrag') ||
+                                _document.elementFromPoint(
+                                    e.pageX, e.pageY
+                                ) == cont
+                            ) {
+                                pushed = 1;
+                                lastClientX = e.clientX;
+                                lastClientY = e.clientY;
 
-                            e.preventDefault();
-                        }
-                    }, 0
-                );
-
-                _window[addEventListener](
-                    mouseup, cont.mu = function() {pushed = 0;}, 0
-                );
-
-                _window[addEventListener](
-                    mousemove,
-                    cont.mm = function(e) {
-                        if (pushed) {
-                            (scroller = el.scroller||el).scrollLeft -=
-                                newScrollX = (- lastClientX + (lastClientX=e.clientX));
-                            scroller.scrollTop -=
-                                newScrollY = (- lastClientY + (lastClientY=e.clientY));
-                            if (el == _document.body) {
-                                (scroller = _document.documentElement).scrollLeft -= newScrollX;
-                                scroller.scrollTop -= newScrollY;
+                                e.preventDefault();
                             }
-                        }
-                    }, 0
-                );
+                        }, 0
+                    );
+                });
+
+                mouseup.split(' ').forEach(function(ev) {
+                    _window[addEventListener](
+                        ev, cont.mu = function() {pushed = 0;}, 0
+                    );
+                });
+                mousemove.split(' ').forEach(function(ev) {
+                    _window[addEventListener](
+                        ev,
+                        cont.mm = function(e) {
+                            fixTouches(e);
+                            if (pushed) {
+                                (scroller = el.scroller||el).scrollLeft -=
+                                    newScrollX = (- lastClientX + (lastClientX=e.clientX));
+                                scroller.scrollTop -=
+                                    newScrollY = (- lastClientY + (lastClientY=e.clientY));
+                                if (el == _document.body) {
+                                    (scroller = _document.documentElement).scrollLeft -= newScrollX;
+                                    scroller.scrollTop -= newScrollY;
+                                }
+                            }
+                        }, 0
+                    );
+                });
              })(dragged[i++]);
         }
     }
