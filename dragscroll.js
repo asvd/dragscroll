@@ -43,6 +43,12 @@
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
+                        if (e.target.hasAttribute('disabledrag') 
+                            || e.target.closest('[disabledrag]')
+                        ) {                      
+                            return true
+                        }
+
                         if (!el.hasAttribute('nochilddrag') ||
                             _document.elementFromPoint(
                                 e.pageX, e.pageY
