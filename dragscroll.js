@@ -43,6 +43,13 @@
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
+                        if (e.target.tagName === "SELECT"
+                          || e.target.tagName === "INPUT"
+                          || e.target.tagName === "TEXTAREA"
+                        ) {                      
+                            return true
+                        }
+
                         if (!el.hasAttribute('nochilddrag') ||
                             _document.elementFromPoint(
                                 e.pageX, e.pageY
