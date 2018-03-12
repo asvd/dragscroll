@@ -43,6 +43,7 @@
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
+                        el.classList.add('dragging');
                         if (!el.hasAttribute('nochilddrag') ||
                             _document.elementFromPoint(
                                 e.pageX, e.pageY
@@ -58,7 +59,10 @@
                 );
 
                 _window[addEventListener](
-                    mouseup, cont.mu = function() {pushed = 0;}, 0
+                    mouseup, cont.mu = function() {
+                        el.classList.remove('dragging');
+                        pushed = 0;
+                    }, 0
                 );
 
                 _window[addEventListener](
