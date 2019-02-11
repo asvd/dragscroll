@@ -43,6 +43,16 @@
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
+                        var noDrag = false
+                        for (let i = 0; i < e.path.length; i++) {
+                          if (
+                            typeof e.path[i].hasAttribute === 'function' &&
+                            e.path[i].hasAttribute('nodrag')
+                          ) {
+                            noDrag = true
+                            break
+                          }
+                        }
                         if (!el.hasAttribute('nochilddrag') ||
                             _document.elementFromPoint(
                                 e.pageX, e.pageY
