@@ -21,10 +21,12 @@
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
     var mousedown = 'mousedown';
+    var click = 'click';
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
     var removeEventListener = 'remove'+EventListener;
     var newScrollX, newScrollY;
+    var moveThreshold = 4;
 
     var dragged = [];
     var reset = function(i, el) {
@@ -32,6 +34,7 @@
             el = dragged[i++];
             el = el.container || el;
             el[removeEventListener](mousedown, el.md, 0);
+            el[removeEventListener](click, el.mc, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
         }
@@ -39,7 +42,7 @@
         // cloning into array since HTMLCollection is updated dynamically
         dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
         for (i = 0; i < dragged.length;) {
-            (function(el, lastClientX, lastClientY, pushed, scroller, cont){
+            (function(el, lastClientX, lastClientY, startX, startY, moved, pushed, scroller, cont){
                 (cont = el.container || el)[addEventListener](
                     mousedown,
                     cont.md = function(e) {
@@ -49,14 +52,23 @@
                             ) == cont
                         ) {
                             pushed = 1;
-                            lastClientX = e.clientX;
-                            lastClientY = e.clientY;
-
+                            moved = 0;
+                            startX = lastClientX = e.clientX;
+                            startY = lastClientY = e.clientY;
                             e.preventDefault();
+                            e.stopPropagation();
                         }
                     }, 0
                 );
-
+                (cont = el.container || el)[addEventListener](
+                  click,
+                  cont.mc = function(e) {
+                    if (moved) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }
+                  }, 1
+                );
                 _window[addEventListener](
                     mouseup, cont.mu = function() {pushed = 0;}, 0
                 );
@@ -65,6 +77,12 @@
                     mousemove,
                     cont.mm = function(e) {
                         if (pushed) {
+                          if (!moved &&
+                            (Math.abs(e.clientX - startX) > moveThreshold ||
+                             Math.abs(e.clientY - startY) > moveThreshold)) {
+                               moved = true;
+                             }
+                          if (moved) {
                             (scroller = el.scroller||el).scrollLeft -=
                                 newScrollX = (- lastClientX + (lastClientX=e.clientX));
                             scroller.scrollTop -=
@@ -73,6 +91,7 @@
                                 (scroller = _document.documentElement).scrollLeft -= newScrollX;
                                 scroller.scrollTop -= newScrollY;
                             }
+                          }
                         }
                     }, 0
                 );
