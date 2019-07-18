@@ -21,7 +21,7 @@
     var mousemove = 'mousemove';
     var mouseup = 'mouseup';
     var mousedown = 'mousedown';
-    var mouseout = 'mouseout';
+    var mouseenter = 'mouseenter';
     var click = 'click';
     var EventListener = 'EventListener';
     var addEventListener = 'add'+EventListener;
@@ -38,7 +38,7 @@
             el[removeEventListener](click, el.mc, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
-            _document[removeEventListener](mouseout, el.mo, 0);
+            _document[removeEventListener](mouseenter, el.mo, 0);
         }
 
         // cloning into array since HTMLCollection is updated dynamically
@@ -75,7 +75,7 @@
                     mouseup, cont.mu = function() {pushed = 0;}, 0
                 );
                 _document[addEventListener](
-                  mouseout, cont.mo = function() {pushed = 0;}, 0
+                  mouseenter, cont.me = function(e) {if (!e.buttonsPressed) pushed = 0;}, 0
                 );
                 _window[addEventListener](
                     mousemove,
