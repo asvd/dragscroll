@@ -38,7 +38,7 @@
             el[removeEventListener](click, el.mc, 0);
             _window[removeEventListener](mouseup, el.mu, 0);
             _window[removeEventListener](mousemove, el.mm, 0);
-            _document[removeEventListener](mouseenter, el.mo, 0);
+            _document[removeEventListener](mouseenter, el.me, 0);
         }
 
         // cloning into array since HTMLCollection is updated dynamically
