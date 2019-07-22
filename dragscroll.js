@@ -68,6 +68,7 @@
                     if (moved) {
                       e.preventDefault();
                       e.stopPropagation();
+                      moved = 0; pushed = 0;
                     }
                   }, 1
                 );
