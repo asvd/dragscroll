@@ -3,6 +3,7 @@
   "name": "dragscroll",
   "description": "Tiny library for drag-n-drop scrolling style",
   "version": "0.0.8",
+  "license": "MIT",
   "keywords": [
     "dragscroll",
     "scroll",
@@ -20,11 +21,10 @@
     "type": "git",
     "url": "git://github.com/asvd/dragscroll.git"
   },
-  "browser":
-    {
-      "fs": false,
-      "child_process": false
-    },
+  "browser": {
+    "fs": false,
+    "child_process": false
+  },
   "main": "dragscroll.js",
   "dependencies": {},
   "devDependencies": {},
